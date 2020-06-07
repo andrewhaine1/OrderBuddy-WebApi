@@ -140,7 +140,7 @@ namespace Ord.WebApi
                 RequestPath = "/media"
             });
             app.UseHttpsRedirection();
-            app.UseMvc();
+            //app.UseMvc();
         }
     }
 }
