@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Ord.WebApi.Data.Contexts;
 using Ord.WebApi.Mappers.Menu;
@@ -29,14 +30,14 @@ namespace Ord.WebApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment environment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
 	    Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
-	public IHostingEnvironment Environment { get; }
+	public IWebHostEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -49,8 +50,8 @@ namespace Ord.WebApi
                     builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
 
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options => options.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("Default")));
@@ -91,7 +92,7 @@ namespace Ord.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
             ApplicationDbContext context, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
@@ -140,7 +141,7 @@ namespace Ord.WebApi
                 RequestPath = "/media"
             });
             app.UseHttpsRedirection();
-            //app.UseMvc();
+            app.UseMvc();
         }
     }
 }

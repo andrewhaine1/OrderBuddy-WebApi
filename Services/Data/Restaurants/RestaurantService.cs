@@ -23,7 +23,7 @@ namespace Ord.WebApi.Services.Data.Restaurants
             RestaurantResourceParameters restaurantParameters)
         {
             var restaurants = _restRepo.EntityDbSet
-                .Where(r => r.Suburb.ToLowerInvariant() == suburbName.ToLowerInvariant())
+                .Where(r => r.Suburb == suburbName)
                 .Where(r => r.IsActive)
                 .Include(r => r.CollectionTypes)
                 .ThenInclude(c => c.CollectionType)
@@ -37,8 +37,9 @@ namespace Ord.WebApi.Services.Data.Restaurants
 
         public async Task<PagedList<Restaurant>> GetRestaurantsForCityAsync(string cityName,
             ResourceParameters resourceParameters)
-            => await PagedList<Restaurant>.CreateAsync(_restRepo.EntityDbSet
-                .Where(r => r.City.ToLowerInvariant() == cityName.ToLowerInvariant())
+        { 
+            return await PagedList<Restaurant>.CreateAsync(_restRepo.EntityDbSet
+                .Where(r => r.City == cityName)
                 .Where(r => r.IsActive)
                 .Include(r => r.CollectionTypes)
                 .ThenInclude(c => c.CollectionType)
@@ -46,6 +47,7 @@ namespace Ord.WebApi.Services.Data.Restaurants
                 .ThenInclude(p => p.PaymentMethod),
                 resourceParameters.PageNumber,
                 resourceParameters.PageSize);
+        }
 
         public async Task<IEnumerable<Restaurant>> GetRestaurantsForUserAsync(int userId)
             => await _restRepo.EntityDbSet
