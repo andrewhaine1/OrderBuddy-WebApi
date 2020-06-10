@@ -437,4 +437,4 @@ prod/
 site/
 release/
 published/
-logs/
+logs/*

@@ -42,7 +42,7 @@ namespace Ord.WebApi.Controllers
 
             // Might have to get suburb and city from user so if suburb is not in service areas 
             // then city can be searched and if city is not in suburb areas, load default.    
-	    if (!string.IsNullOrEmpty(restaurantParams.Suburb) &&
+	        if (!string.IsNullOrEmpty(restaurantParams.Suburb) &&
                 !string.IsNullOrEmpty(restaurantParams.City))
                 return BadRequest(new
                 {

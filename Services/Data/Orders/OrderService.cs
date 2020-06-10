@@ -29,8 +29,7 @@ namespace Ord.WebApi.Services.Data.Orders
             if (dateRange == DateRange.Today)
             {
                 var collection = _orderRepo.EntityDbSet
-                .Where(o => o.OrderInfo.DateTimePlaced.ToString("yyyy/MM/dd")
-                .Equals(System.DateTime.Today.ToString("yyyy/MM/dd")))
+                .Where(o => o.OrderInfo.DateTimePlaced.Date == System.DateTime.Today)
                 .Where(o => o.RestaurantId == restaurantId)
                 .Include(o => o.Restaurant)
                 .Include(o => o.OrdUser)
@@ -81,8 +80,7 @@ namespace Ord.WebApi.Services.Data.Orders
             if (dateRange == DateRange.Today)
             {
                 var collection = _orderRepo.EntityDbSet
-                .Where(o => o.OrderInfo.DateTimePlaced.ToString("yyyy/MM/dd")
-                .Equals(System.DateTime.Today.ToString("yyyy/MM/dd")))
+                .Where(o => o.OrderInfo.DateTimePlaced.Date == System.DateTime.Today)
                 .Where(o => o.OrdUserId == userId)
                 .Include(o => o.Restaurant)
                 .Include(o => o.OrdUser)
