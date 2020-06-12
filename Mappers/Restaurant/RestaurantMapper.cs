@@ -20,6 +20,8 @@ namespace Ord.WebApi.Mappers.Restaurant
                 Models.Restaurant>()
                 .ForMember(dest => dest.RestaurantImagePath, opt =>
                 opt.MapFrom(src => $"{GetBaseUrl()}/{src.RestaurantImagePath}"))
+                .ForMember(dest => dest.RestaurantCoverImagePath, opt =>
+                opt.MapFrom(src => $"{GetBaseUrl()}/{src.RestaurantCoverImagePath}"))
                 .ForMember(dest => dest.CollectionTypes, opt =>
                 opt.MapFrom(src => RestaurantCollectionTypeEntitiesToModels(src.CollectionTypes)))
                 .ForMember(dest => dest.PaymentMethods, opt =>
@@ -34,6 +36,8 @@ namespace Ord.WebApi.Mappers.Restaurant
                 Models.Restaurant>()
                 .ForMember(dest => dest.RestaurantImagePath, opt =>
                 opt.MapFrom(src => $"{GetBaseUrl()}/{src.RestaurantImagePath}"))
+                .ForMember(dest => dest.RestaurantCoverImagePath, opt =>
+                opt.MapFrom(src => $"{GetBaseUrl()}/{src.RestaurantCoverImagePath}"))
                 .ForMember(dest => dest.CollectionTypes, opt =>
                 opt.MapFrom(src => RestaurantCollectionTypeEntitiesToModels(src.CollectionTypes)))
                 .ForMember(dest => dest.PaymentMethods, opt =>
@@ -48,6 +52,8 @@ namespace Ord.WebApi.Mappers.Restaurant
                 Models.Restaurant>()
                 .ForMember(dest => dest.RestaurantImagePath, opt => 
                 opt.MapFrom(src => $"{GetBaseUrl()}/{src.RestaurantImagePath}"))
+                .ForMember(dest => dest.RestaurantCoverImagePath, opt =>
+                opt.MapFrom(src => $"{GetBaseUrl()}/{src.RestaurantCoverImagePath}"))
                 .ForMember(dest => dest.CollectionTypes, opt =>
                 opt.MapFrom(src => RestaurantCollectionTypeEntitiesToModels(src.CollectionTypes)))
                 .ForMember(dest => dest.PaymentMethods, opt =>

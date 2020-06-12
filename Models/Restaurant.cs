@@ -42,6 +42,8 @@ namespace Ord.WebApi.Models
         public int ServiceAreaId { get; set; }
 
         public string RestaurantImagePath { get; set; }
+        
+        public string RestaurantCoverImagePath { get; set; }
 
         public IEnumerable<RestaurantCollectionType> CollectionTypes { get; set; }
 

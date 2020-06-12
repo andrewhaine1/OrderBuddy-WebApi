@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Ord.WebApi.Data.Migrations
 {
-    public partial class ProductionMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -26,7 +26,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     OauthId = table.Column<int>(nullable: false),
                     FullName = table.Column<string>(nullable: false),
                     EmailAddress = table.Column<string>(nullable: true),
@@ -44,7 +44,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -57,7 +57,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Suburb = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
                     Country = table.Column<string>(nullable: true)
@@ -72,7 +72,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     OrdUserId = table.Column<int>(nullable: false),
                     StreetAddress = table.Column<string>(nullable: false),
                     Suburb = table.Column<string>(nullable: true),
@@ -99,7 +99,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     OrdUserId = table.Column<int>(nullable: false),
                     StreetAddress = table.Column<string>(nullable: false),
                     Suburb = table.Column<string>(nullable: true),
@@ -127,7 +127,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: false),
                     OrdUserId = table.Column<int>(nullable: false),
                     PhoneNumber = table.Column<string>(nullable: false),
@@ -142,6 +142,7 @@ namespace Ord.WebApi.Data.Migrations
                     Country = table.Column<string>(nullable: false),
                     ServiceAreaId = table.Column<int>(nullable: false),
                     RestaurantImagePath = table.Column<string>(nullable: true),
+                    RestaurantCoverImagePath = table.Column<string>(nullable: true),
                     IsHalal = table.Column<bool>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     IsSuspended = table.Column<bool>(nullable: false)
@@ -168,7 +169,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     RestaurantId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: false)
                 },
@@ -188,9 +189,10 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     OrdUserId = table.Column<int>(nullable: false),
-                    RestaurantId = table.Column<int>(nullable: false)
+                    RestaurantId = table.Column<int>(nullable: false),
+                    StoreOrderNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -214,7 +216,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     RestaurantId = table.Column<int>(nullable: false),
                     CollectionTypeId = table.Column<int>(nullable: false)
                 },
@@ -240,7 +242,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     RestaurantId = table.Column<int>(nullable: false),
                     PaymentMethodId = table.Column<int>(nullable: false)
                 },
@@ -266,7 +268,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     MenuId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true)
                 },
@@ -286,7 +288,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     OrderId = table.Column<int>(nullable: false),
                     DateTimePlaced = table.Column<DateTime>(nullable: false),
                     DateTimeAccepted = table.Column<DateTime>(nullable: false),
@@ -328,7 +330,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CategoryId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true),
@@ -350,7 +352,7 @@ namespace Ord.WebApi.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     OrderId = table.Column<int>(nullable: false),
                     ItemId = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),

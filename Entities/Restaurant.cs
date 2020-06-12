@@ -46,8 +46,9 @@ namespace Ord.WebApi.Entities
         [Required]
         public int ServiceAreaId { get; set; }
 
-        public string RestaurantImagePath { get; set; } 
-            = "~/Media/Shared/Images/fast_food_meal.jpg";
+        public string RestaurantImagePath { get; set; }
+
+        public string RestaurantCoverImagePath { get; set; }
 
         public IEnumerable<Menu> Menus { get; set; }
 

@@ -174,6 +174,11 @@ namespace Ord.WebApi.Controllers
                     Error = $"A restaurant with the name '{restaurant.Name}' already exists."
                 });
 
+            // Add default restaurant cover image if not is set
+            if (restaurant.RestaurantCoverImagePath == null 
+                || restaurant.RestaurantCoverImagePath == string.Empty)
+                restaurant.RestaurantCoverImagePath = "Media/Shared/Images/fast_food_meal.jpg";
+
             // Map restaurant model to entity.
             var restaurantEntity = _restMapper.RestaurantModelToEntity(restaurant);
             restaurantEntity.IsActive = false;
@@ -317,7 +322,6 @@ namespace Ord.WebApi.Controllers
 
             return NoContent();
         }
-
 
         [HttpGet]
         [Route("{restaurantId}/issuspended", Name = "RestaurantIsSuspended")]
