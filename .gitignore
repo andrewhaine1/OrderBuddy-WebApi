@@ -438,3 +438,5 @@ site/
 release/
 published/
 logs/*
+logs\internal-nlog.txt
+Program.cs
